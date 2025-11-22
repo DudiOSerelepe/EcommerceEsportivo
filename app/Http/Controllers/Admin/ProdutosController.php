@@ -33,7 +33,10 @@ class ProdutosController extends Controller
         ]);
 
         Produtos::create($request->all());
-        return redirect()->route('admin.produtos.index')->with('sucesso', 'Produto criado!');
+
+        return redirect()
+            ->route('admin.produtos.index')
+            ->with('sucesso', 'Produto cadastrado com sucesso!');
     }
 
     public function edit($id)
@@ -58,12 +61,18 @@ class ProdutosController extends Controller
         ]);
 
         $produto->update($request->all());
-        return redirect()->route('admin.produtos.index')->with('sucesso', 'Produto atualizado!');
+
+        return redirect()
+            ->route('admin.produtos.index')
+            ->with('sucesso', 'Produto atualizado com sucesso!');
     }
 
     public function destroy($id)
     {
         Produtos::destroy($id);
-        return redirect()->route('admin.produtos.index')->with('sucesso', 'Produto removido!');
+
+        return redirect()
+            ->route('admin.produtos.index')
+            ->with('sucesso', 'Produto removido com sucesso!');
     }
 }

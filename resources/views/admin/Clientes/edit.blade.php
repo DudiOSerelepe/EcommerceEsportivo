@@ -52,3 +52,17 @@
     <a href="{{ route('admin.clientes.index') }}" class="btn btn-secondary">Voltar</a>
 </form>
 @endsection
+
+{{-- SweetAlert --}}
+@section('scripts')
+@if (session('sucesso'))
+<script>
+    Swal.fire({
+        icon: "success",
+        title: "{{ session('sucesso') }}",
+        showConfirmButton: false,
+        timer: 1800
+    })
+</script>
+@endif
+@endsection

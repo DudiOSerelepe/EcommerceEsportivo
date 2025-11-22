@@ -17,6 +17,18 @@
     </div>
 @endif
 
+{{-- SweetAlert de sucesso --}}
+@if (session('sucesso'))
+<script>
+    Swal.fire({
+        icon: "success",
+        title: "{{ session('sucesso') }}",
+        showConfirmButton: false,
+        timer: 1800
+    });
+</script>
+@endif
+
 <form action="{{ route('admin.clientes.store') }}" method="POST">
     @csrf
 

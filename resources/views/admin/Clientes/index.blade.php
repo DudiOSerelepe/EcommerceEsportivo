@@ -8,10 +8,6 @@
     <a href="{{ route('admin.clientes.create') }}" class="btn btn-primary">+ Novo Cliente</a>
 </div>
 
-@if (session('sucesso'))
-    <div class="alert alert-success">{{ session('sucesso') }}</div>
-@endif
-
 <table class="table table-striped table-hover">
     <thead class="table-dark">
         <tr>
@@ -43,11 +39,39 @@
                 <form action="{{ route('admin.clientes.destroy', $cliente->id) }}" method="POST" class="d-inline">
                     @csrf
                     @method('DELETE')
-                    <button class="btn btn-danger btn-sm" onclick="return confirm('Excluir cliente?')">Excluir</button>
+
+                    <button type="submit" class="btn btn-danger btn-sm" onclick="confirmarExclusao(event)">
+                        Excluir
+                    </button>
                 </form>
             </td>
         </tr>
         @endforeach
     </tbody>
 </table>
+
+{{-- Script SweetAlert Exclusão --}}
+<script>
+function confirmarExclusao(event) {
+    event.preventDefault();
+
+    let form = event.target.form;
+
+    Swal.fire({
+        title: "Tem certeza?",
+        text: "Esta ação não poderá ser desfeita!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Sim, excluir!",
+        cancelButtonText: "Cancelar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            form.submit();
+        }
+    });
+}
+</script>
+
 @endsection

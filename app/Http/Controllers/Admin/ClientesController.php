@@ -30,8 +30,9 @@ class ClientesController extends Controller
 
         Clientes::create($request->all());
 
-        return redirect()->route('admin.clientes.index')
-                         ->with('sucesso', 'Cliente criado com sucesso!');
+        return redirect()
+            ->route('admin.clientes.index')
+            ->with('sucesso', 'Cliente cadastrado com sucesso!');
     }
 
     public function edit($id)
@@ -53,15 +54,17 @@ class ClientesController extends Controller
 
         $cliente->update($request->all());
 
-        return redirect()->route('admin.clientes.index')
-                         ->with('sucesso', 'Cliente atualizado com sucesso!');
+        return redirect()
+            ->route('admin.clientes.index')
+            ->with('sucesso', 'Cliente atualizado com sucesso!');
     }
 
     public function destroy($id)
     {
         Clientes::destroy($id);
 
-        return redirect()->route('admin.clientes.index')
-                         ->with('sucesso', 'Cliente removido!');
+        return redirect()
+            ->route('admin.clientes.index')
+            ->with('sucesso', 'Cliente removido com sucesso!');
     }
 }

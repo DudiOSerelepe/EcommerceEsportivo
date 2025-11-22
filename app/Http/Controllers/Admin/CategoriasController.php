@@ -29,8 +29,9 @@ class CategoriasController extends Controller
             'nome' => $request->nome
         ]);
 
-        return redirect()->route('admin.categorias.index')
-                         ->with('sucesso', 'Categoria criada com sucesso!');
+        return redirect()
+            ->route('admin.categorias.index')
+            ->with('sucesso', 'Categoria cadastrada com sucesso!');
     }
 
     public function edit($id)
@@ -48,16 +49,18 @@ class CategoriasController extends Controller
         $categoria = Categorias::findOrFail($id);
         $categoria->update(['nome' => $request->nome]);
 
-        return redirect()->route('admin.categorias.index')
-                         ->with('sucesso', 'Categoria atualizada com sucesso!');
-    }
+        return redirect()
+            ->route('admin.categorias.index')
+            ->with('sucesso', 'Categoria atualizada com sucesso!');
+    } 
 
     public function destroy($id)
     {
         $categoria = Categorias::findOrFail($id);
         $categoria->delete();
 
-        return redirect()->route('admin.categorias.index')
-                         ->with('sucesso', 'Categoria excluída com sucesso!');
+        return redirect()
+            ->route('admin.categorias.index')
+            ->with('sucesso', 'Categoria excluída com sucesso!');
     }
 }
